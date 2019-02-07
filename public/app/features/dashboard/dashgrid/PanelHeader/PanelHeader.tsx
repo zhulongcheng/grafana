@@ -8,7 +8,7 @@ import templateSrv from 'app/features/templating/template_srv';
 
 import { DashboardModel } from 'app/features/dashboard/state/DashboardModel';
 import { PanelModel } from 'app/features/dashboard/state/PanelModel';
-import { ClickOutsideWrapper } from 'app/core/components/ClickOutsideWrapper/ClickOutsideWrapper';
+import { ClickOutsideWrapper } from '@grafana/ui';
 
 export interface Props {
   panel: PanelModel;
@@ -30,18 +30,18 @@ interface State {
 }
 
 export class PanelHeader extends Component<Props, State> {
-  clickCoordinates: ClickCoordinates = {x: 0, y: 0};
+  clickCoordinates: ClickCoordinates = { x: 0, y: 0 };
   state = {
     panelMenuOpen: false,
-    clickCoordinates: {x: 0, y: 0}
+    clickCoordinates: { x: 0, y: 0 },
   };
 
   eventToClickCoordinates = (event: React.MouseEvent<HTMLDivElement>) => {
     return {
       x: event.clientX,
-      y: event.clientY
+      y: event.clientY,
     };
-  }
+  };
 
   onMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     this.clickCoordinates = this.eventToClickCoordinates(event);
@@ -49,7 +49,7 @@ export class PanelHeader extends Component<Props, State> {
 
   isClick = (clickCoordinates: ClickCoordinates) => {
     return isEqual(clickCoordinates, this.clickCoordinates);
-  }
+  };
 
   onMenuToggle = (event: React.MouseEvent<HTMLDivElement>) => {
     if (this.isClick(this.eventToClickCoordinates(event))) {
