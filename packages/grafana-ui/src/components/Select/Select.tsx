@@ -46,6 +46,7 @@ interface CommonProps {
   noOptionsMessage?: () => string;
   isMulti?: boolean;
   backspaceRemovesValue: boolean;
+  menuIsOpen: boolean;
 }
 
 interface SelectProps {
@@ -61,7 +62,9 @@ interface AsyncProps {
 export const MenuList = (props: any) => {
   return (
     <components.MenuList {...props}>
-      <CustomScrollbar autoHide={false} autoHeightMax="inherit">{props.children}</CustomScrollbar>
+      <CustomScrollbar autoHide={false} autoHeightMax="inherit">
+        {props.children}
+      </CustomScrollbar>
     </components.MenuList>
   );
 };
@@ -79,6 +82,7 @@ export class Select extends PureComponent<CommonProps & SelectProps> {
     isLoading: false,
     backspaceRemovesValue: true,
     maxMenuHeight: 300,
+    menuIsOpen: false,
   };
 
   render() {
@@ -103,6 +107,7 @@ export class Select extends PureComponent<CommonProps & SelectProps> {
       onBlur,
       maxMenuHeight,
       noOptionsMessage,
+      menuIsOpen,
     } = this.props;
 
     let widthClass = '';
@@ -116,13 +121,7 @@ export class Select extends PureComponent<CommonProps & SelectProps> {
       <ReactSelect
         classNamePrefix="gf-form-select-box"
         className={selectClassNames}
-        components={{
-          Option: SelectOption,
-          SingleValue,
-          IndicatorsContainer,
-          MenuList,
-          Group: SelectOptionGroup,
-        }}
+        components={{ Option: SelectOption, SingleValue, IndicatorsContainer, MenuList, Group: SelectOptionGroup }}
         defaultValue={defaultValue}
         value={value}
         getOptionLabel={getOptionLabel}
@@ -143,6 +142,7 @@ export class Select extends PureComponent<CommonProps & SelectProps> {
         noOptionsMessage={noOptionsMessage}
         isMulti={isMulti}
         backspaceRemovesValue={backspaceRemovesValue}
+        menuIsOpen={menuIsOpen}
       />
     );
   }
