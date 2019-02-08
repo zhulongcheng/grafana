@@ -24,5 +24,5 @@ export { ValueMappingsEditor } from './ValueMappingsEditor/ValueMappingsEditor';
 export { Gauge } from './Gauge/Gauge';
 export { Switch } from './Switch/Switch';
 export { ClickOutsideWrapper } from './ClickOutsideWrapper/ClickOutsideWrapper';
-export { HeadlessSelect } from './Select/HeadlessSelect';
-export { SelectButton } from './Select/SelectButton';
+export { Input } from './Input/Input';
+export { InputStatus } from './Input/Input';
