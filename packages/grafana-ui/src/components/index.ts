@@ -8,6 +8,8 @@ export { Select, AsyncSelect, SelectOptionItem } from './Select/Select';
 export { IndicatorsContainer } from './Select/IndicatorsContainer';
 export { NoOptionsMessage } from './Select/NoOptionsMessage';
 export { default as resetSelectStyles } from './Select/resetSelectStyles';
+export { SelectButton } from './Select/SelectButton';
+export { HeadlessSelect } from './Select/HeadlessSelect';
 
 // Forms
 export { FormLabel } from './FormLabel/FormLabel';
@@ -26,5 +28,3 @@ export { Switch } from './Switch/Switch';
 export { ClickOutsideWrapper } from './ClickOutsideWrapper/ClickOutsideWrapper';
 export { Input } from './Input/Input';
 export { InputStatus } from './Input/Input';
-export { TimePicker } from './TimePicker/TimePicker';
-export { RefreshPicker } from './RefreshPicker/RefreshPicker';
