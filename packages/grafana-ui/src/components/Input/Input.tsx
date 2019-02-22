@@ -56,7 +56,7 @@ export class Input extends PureComponent<Props> {
     if (!validationEvents) {
       return inputElementProps;
     }
-    Object.keys(EventsWithValidation).forEach((eventName: EventsWithValidation) => {
+    Object.keys(EventsWithValidation).forEach((eventName: string) => {
       if (hasValidationEvent(eventName, validationEvents) || restProps[eventName]) {
         inputElementProps[eventName] = async (evt: ChangeEvent<HTMLInputElement>) => {
           evt.persist(); // Needed for async. https://reactjs.org/docs/events.html#event-pooling

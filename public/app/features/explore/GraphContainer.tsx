@@ -25,7 +25,7 @@ interface GraphContainerProps {
 
 export class GraphContainer extends PureComponent<GraphContainerProps> {
   onClickGraphButton = () => {
-    this.props.toggleGraph(this.props.exploreId);
+    this.props.toggleGraph(this.props.exploreId, this.props.showingGraph);
   };
 
   onChangeTime = (timeRange: TimeRange) => {
@@ -70,4 +70,9 @@ const mapDispatchToProps = {
   changeTime,
 };
 
-export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(GraphContainer));
+export default hot(module)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(GraphContainer)
+);

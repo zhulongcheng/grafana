@@ -14,8 +14,13 @@ export interface Props {
 }
 
 export class TimePickerCalendar extends PureComponent<Props> {
-  onCalendarChange = (date: Date) => {
+  onCalendarChange = (date: Date | Date[]) => {
     const { onChange } = this.props;
+
+    if (Array.isArray(date)) {
+      onChange(moment(date[0]));
+      return;
+    }
 
     onChange(moment(date));
   };

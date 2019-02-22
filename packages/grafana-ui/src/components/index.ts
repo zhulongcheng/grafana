@@ -1,5 +1,7 @@
 export { DeleteButton } from './DeleteButton/DeleteButton';
 export { Tooltip } from './Tooltip/Tooltip';
+export { PopperController } from './Tooltip/PopperController';
+export { Popper } from './Tooltip/Popper';
 export { Portal } from './Portal/Portal';
 export { CustomScrollbar } from './CustomScrollbar/CustomScrollbar';
 
@@ -27,3 +29,4 @@ export { Switch } from './Switch/Switch';
 export { ClickOutsideWrapper } from './ClickOutsideWrapper/ClickOutsideWrapper';
 export { Input } from './Input/Input';
 export { InputStatus } from './Input/Input';
+export { EmptySearchResult } from './EmptySearchResult/EmptySearchResult';

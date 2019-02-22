@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { ColorPickerPopover } from './ColorPickerPopover';
-import { ColorPickerProps } from './ColorPicker';
+import { ColorPickerPopover, ColorPickerProps } from './ColorPickerPopover';
 import { PopperContentProps } from '../Tooltip/PopperController';
 import { Switch } from '../Switch/Switch';
 import { withTheme } from '../../themes/ThemeContext';
@@ -69,8 +68,8 @@ export class AxisSelector extends React.PureComponent<AxisSelectorProps, AxisSel
   }
 
   render() {
-    const leftButtonClass = this.state.yaxis === 1 ? 'btn-success' : 'btn-inverse';
-    const rightButtonClass = this.state.yaxis === 2 ? 'btn-success' : 'btn-inverse';
+    const leftButtonClass = this.state.yaxis === 1 ? 'btn-primary' : 'btn-inverse';
+    const rightButtonClass = this.state.yaxis === 2 ? 'btn-primary' : 'btn-inverse';
 
     return (
       <div className="p-b-1">

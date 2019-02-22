@@ -1,4 +1,4 @@
-import React, { PureComponent, ChangeEvent } from 'react';
+import React, { PureComponent, ChangeEvent, FormEvent } from 'react';
 import moment from 'moment';
 import { TimeFragment, TIME_FORMAT, Input } from '@grafana/ui';
 
@@ -26,9 +26,9 @@ export class TimePickerInput extends PureComponent<Props> {
     return isValid;
   };
 
-  onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  onChange = (event: FormEvent<HTMLInputElement>) => {
     const { onChange } = this.props;
-    const value = event.target.value;
+    const value = (event as ChangeEvent<HTMLInputElement>).target.value;
 
     onChange(value, this.isValid(value));
   };

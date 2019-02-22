@@ -9,15 +9,16 @@ import { PlaylistSrv } from 'app/features/playlist/playlist_srv';
 
 // Components
 import { DashNavButton } from './DashNavButton';
+import { Tooltip } from '@grafana/ui';
 
 // State
 import { updateLocation } from 'app/core/actions';
 
 // Types
-import { DashboardModel } from '../../state/DashboardModel';
 // import moment from 'moment';
 // import { RefreshPicker } from '../RefreshPicker/RefreshPicker';
 // import { TimePicker } from '../TimePicker/TimePicker';
+import { DashboardModel } from '../../state';
 
 export interface Props {
   dashboard: DashboardModel;
@@ -36,7 +37,6 @@ export class DashNav extends PureComponent<Props> {
 
   constructor(props: Props) {
     super(props);
-
     this.playlistSrv = this.props.$injector.get('playlistSrv');
   }
 
@@ -68,7 +68,7 @@ export class DashNav extends PureComponent<Props> {
       });
     } else {
       this.props.updateLocation({
-        query: { panelId: null, edit: null, fullscreen: null },
+        query: { panelId: null, edit: null, fullscreen: null, tab: null },
         partial: true,
       });
     }
@@ -126,26 +126,54 @@ export class DashNav extends PureComponent<Props> {
     });
   };
 
-  render() {
-    const { dashboard, isFullscreen, editview, onAddPanel } = this.props;
-    const { canStar, canSave, canShare, folderTitle, showSettings, isStarred } = dashboard.meta;
-    const { snapshot } = dashboard;
+  renderDashboardTitleSearchButton() {
+    const { dashboard } = this.props;
 
+    const folderTitle = dashboard.meta.folderTitle;
     const haveFolder = dashboard.meta.folderId > 0;
-    const snapshotUrl = snapshot && snapshot.originalUrl;
 
     return (
-      <div className="navbar">
+      <>
         <div>
           <a className="navbar-page-btn" onClick={this.onOpenSearch}>
-            <i className="gicon gicon-dashboard" />
+            {!this.isInFullscreenOrSettings && <i className="gicon gicon-dashboard" />}
             {haveFolder && <span className="navbar-page-btn--folder">{folderTitle} / </span>}
             {dashboard.title}
             <i className="fa fa-caret-down" />
           </a>
         </div>
-
         <div className="navbar__spacer" />
+      </>
+    );
+  }
+
+  get isInFullscreenOrSettings() {
+    return this.props.editview || this.props.isFullscreen;
+  }
+
+  renderBackButton() {
+    return (
+      <div className="navbar-edit">
+        <Tooltip content="Go back (Esc)">
+          <button className="navbar-edit__back-btn" onClick={this.onClose}>
+            <i className="fa fa-arrow-left" />
+          </button>
+        </Tooltip>
+      </div>
+    );
+  }
+
+  render() {
+    const { dashboard, onAddPanel } = this.props;
+    const { canStar, canSave, canShare, showSettings, isStarred } = dashboard.meta;
+    const { snapshot } = dashboard;
+
+    const snapshotUrl = snapshot && snapshot.originalUrl;
+
+    return (
+      <div className="navbar">
+        {this.isInFullscreenOrSettings && this.renderBackButton()}
+        {this.renderDashboardTitleSearchButton()}
 
         {this.playlistSrv.isPlaying && (
           <div className="navbar-buttons navbar-buttons--playlist">
@@ -223,7 +251,7 @@ export class DashNav extends PureComponent<Props> {
 
         <div className="navbar-buttons navbar-buttons--tv">
           <DashNavButton
-            tooltip="Cycke view mode"
+            tooltip="Cycle view mode"
             classSuffix="tv"
             icon="fa fa-desktop"
             onClick={this.onToggleTVMode}
@@ -420,17 +448,6 @@ export class DashNav extends PureComponent<Props> {
         </div> */}
 
         <div className="gf-timepicker-nav" ref={element => (this.timePickerEl = element)} />
-
-        {(isFullscreen || editview) && (
-          <div className="navbar-buttons navbar-buttons--close">
-            <DashNavButton
-              tooltip="Back to dashboard"
-              classSuffix="primary"
-              icon="fa fa-reply"
-              onClick={this.onClose}
-            />
-          </div>
-        )}
       </div>
     );
   }
@@ -442,4 +459,7 @@ const mapDispatchToProps = {
   updateLocation,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashNav);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DashNav);
