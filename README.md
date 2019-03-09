@@ -2,6 +2,7 @@
 [![Circle CI](https://circleci.com/gh/grafana/grafana.svg?style=svg)](https://circleci.com/gh/grafana/grafana)
 [![Go Report Card g](https://goreportcard.com/badge/github.com/grafana/grafana)](https://goreportcard.com/report/github.com/grafana/grafana)
 [![Go Report Card ts](https://goreportcard.com/badge/github.com/zhulongcheng/testsql)](https://goreportcard.com/report/github.com/zhulongcheng/testsql)
+[![Go Report Card ts to g](https://goreportcard.com/badge/github.com/grafana/grafana)](https://goreportcard.com/report/github.com/zhulongcheng/testsql)
 [![codecov](https://codecov.io/gh/grafana/grafana/branch/master/graph/badge.svg)](https://codecov.io/gh/grafana/grafana)
 [![Go Report Card mix](https://goreportcard.com/badge/github.com/zhulongcheng/testsql)](https://goreportcard.com/report/github.com/grafana/grafana)
 ================
